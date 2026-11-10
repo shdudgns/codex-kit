@@ -17,6 +17,7 @@
 - 수치 계산과 판정은 코드로 하고, 설명 문장은 그 출력만 근거로 쓴다.
 - 데이터 가정(단위, 결측, 중복, 기간, 키, 파일 간 차이)은 docs/DECISIONS.md에 적는다.
 - 데이터셋별 결과나 오류 메시지를 코드에 미리 고정하지 않는다. 실제 입력을 처리한다.
+- 제조(FAB) 데이터(로트 이력, 장비 센서, 수율, 테스트 결과 등)는 docs/skills/data-check의 '제조 데이터일 때'를 먼저 따른다.
 - 데이터 확인은 docs/skills/data-check, 방법·최적화 비교는 docs/skills/falsifiable-experiments, 서비스 뼈대는 docs/skills/web-service-ready를 따른다.
 - 큰 파일은 전체를 출력하지 않고 필요한 부분과 요약만 본다.
 

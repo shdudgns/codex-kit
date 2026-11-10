@@ -4,23 +4,24 @@ Codex(터미널 코딩 에이전트)로 데이터 기반 과제(분석·최적�
 작업 규칙, 문서 템플릿, 체크리스트, 스킬 문서만 있고 실행 코드는 없습니다.
 
 - v1·v2: 2026-10-30 작성. 10/31 예선에는 v2(`6c7ced8`, main 브랜치)를 사용했습니다. main은 그대로 둡니다.
-- v3: 2026-11-04 작성(`retake` 브랜치, 태그 `v3`). 웹 서비스형 과제와 확인 질문 대비를 보강했습니다. 재시험 시작 이후에는 바꾸지 않습니다.
-- 이 저장소에는 시험 문제, 과제 파일, 결과물이 들어 있지 않습니다. 2차 예선 결과 발표 전까지 공개 상태를 유지합니다.
+- v3: 2026-11-04 작성(`retake` 브랜치, 태그 `v3`). 웹 서비스형 과제와 확인 질문 대비를 보강했습니다.
+- v4: 2026-11-11 본선용(main 브랜치, 태그 `v4`). 6시간 반 일정표, 제조(FAB) 데이터 확인 절차, 3분 설명 원고 틀을 더했습니다. 본선 시작 이후에는 바꾸지 않습니다.
+- 이 저장소에는 시험 문제, 과제 파일, 결과물이 들어 있지 않습니다. 본선 결과 발표 전까지 공개 상태를 유지합니다.
 
 ## 구성
 
 | 경로 | 용도 | 복사할 위치 |
 | --- | --- | --- |
 | `AGENTS.md` | Codex 작업 규칙 | 과제 폴더 루트 |
-| `templates/` | REQUIREMENTS(요구사항 추적), AGREEMENT(담당자 합의), DECISIONS(결정·확정/가정), HANDOFF(인계·확인 질문 대비) | `docs/` |
-| `skills/` | data-check(데이터 확인), falsifiable-experiments(개선 주장 검증), web-service-ready(배포 전제 웹 서비스) | `docs/skills/` |
+| `templates/` | REQUIREMENTS(요구사항 추적), AGREEMENT(담당자 합의), DECISIONS(결정·확정/가정), HANDOFF(인계·확인 질문 대비), PITCH(3분 설명 원고) | `docs/` |
+| `skills/` | data-check(데이터 확인, 제조 데이터 절 포함), falsifiable-experiments(개선 주장 검증), web-service-ready(배포 전제 웹 서비스) | `docs/skills/` |
 | `checklists/` | 담당자 인터뷰, Codex 프롬프트 예시, 제출 전 점검 (사람이 읽는 용도) | `docs/checklists/` |
 
 ## 사용법
 
 ```bash
 # 1) 가져오기
-git clone --branch v3 https://github.com/shdudgns/codex-kit /tmp/kit
+git clone https://github.com/shdudgns/codex-kit /tmp/kit     # main = v4. 같은 내용 고정본: --branch v4
 git -C /tmp/kit log -1 --oneline     # 이 해시를 docs/HANDOFF.md '사용한 외부 자료'에 적는다
 
 # 2) 과제 폴더(과제 README가 있는 곳)로 이동한 뒤 복사. pwd, ls -la로 먼저 확인
@@ -33,10 +34,30 @@ git config user.name >/dev/null || git config user.name "shdudgns"
 git config user.email >/dev/null || git config user.email "shdudgns@users.noreply.github.com"
 printf '.*\n!.gitignore\n!.env.example\n__pycache__/\n.pytest_cache/\n' >> .gitignore
 git add -A && git status --short     # 설정·키 파일이 섞여 있지 않은지 확인
-git commit -m "시작: 과제 파일 + 하네스(codex-kit v3) 반입"
+git commit -m "시작: 과제 파일 + 하네스(codex-kit v4) 반입"
 ```
 
 4) AGENTS.md를 복사한 다음에 `codex`를 실행한다. `/status`로 모델·권한을 확인한다.
+
+## 본선 일정표 (09:30~16:00, 약 6시간 반)
+
+과제 안내의 시간이 다르면 비율로 맞춘다. 점심(12:00~13:00)은 자리에서 먹는다고 보고 시계는 계속 간다.
+
+| 시각 | 할 일 | 끝났다는 기준 |
+| --- | --- | --- |
+| 09:30 | 과제 README 정독, 제출물·채점 기준·금지 사항 확인 | REQUIREMENTS.md 초안(프롬프트 E) |
+| 09:45 | 하네스 반입·첫 커밋, `codex` → `/status` | 커밋 해시 |
+| 09:50 | 데이터 확인(프롬프트 A) + 담당자에게 목적 질문 | DECISIONS.md 데이터 가정 |
+| 10:20 | 합의문, 기준선(현행 방식)과 성공 기준 정하기 | AGREEMENT.md, 담당자 확인 |
+| 10:30 | 계획(프롬프트 D·F) 승인 | 모듈 목록 |
+| 10:40~12:00 | 최소 동작판 + 기준선 측정 | **12:00에 결과 파일과 기준선 숫자 존재** |
+| 12:00~13:00 | 점심. 오래 걸리는 실행을 돌려 두고 결과는 먹은 뒤 확인 | |
+| 13:00~14:30 | 개선. 기준선 대비, 보지 않은 데이터로 판정 | 개선 숫자 + 판정 방법 |
+| 14:30~15:15 | 검증(`submit.md`), 반대 증거, 화면 | 핵심 숫자 2개 직접 재계산 |
+| 15:15 | **새 기능 동결** | |
+| 15:15~15:40 | 제출 문서, HANDOFF.md, PITCH.md | 빈 칸 없음 |
+| 15:40 | 제출 시작(종료 10~20분 전) | 제출 확정 |
+| 이후 | PITCH.md와 HANDOFF 숫자 다시 읽기 | 원고 없이 3분 |
 
 ## 파일을 쓰는 순서 (3시간 기준)
 
