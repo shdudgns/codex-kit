@@ -15,9 +15,12 @@ Codex(터미널 코딩 에이전트)로 데이터 기반 과제(분석·최적�
 | `AGENTS.md` | Codex 작업 규칙 | 과제 폴더 루트 |
 | `templates/` | REQUIREMENTS(요구사항 추적), AGREEMENT(담당자 합의), DECISIONS(결정·확정/가정), HANDOFF(인계·확인 질문 대비), PITCH(3분 설명 원고) | `docs/` |
 | `skills/` | data-check(데이터 확인, 제조 데이터 절 포함), falsifiable-experiments(개선 주장 검증), web-service-ready(배포 전제 웹 서비스) | `docs/skills/` |
+| `START.md` | 시작 명령만 모은 파일 (`cat`으로 보고 따라 치기) | 복사하지 않음 |
 | `checklists/` | 담당자 인터뷰, Codex 프롬프트 예시, 제출 전 점검 (사람이 읽는 용도) | `docs/checklists/` |
 
 ## 사용법
+
+clone한 뒤 `cat /tmp/kit/START.md`를 치면 아래 2)~4) 명령만 짧게 볼 수 있습니다.
 
 ```bash
 # 1) 가져오기
